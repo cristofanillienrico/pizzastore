@@ -73,4 +73,19 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository {
 		return typedQuery.getResultList();
 	}
 
+	@Override
+	public Utente findOneEagerRuoli(Long id) {
+		TypedQuery<Utente> query = entityManager.createQuery("from Utente u left join fetch u.ruoli a where u.id = ?1",
+				Utente.class);
+		query.setParameter(1, id);
+		return query.getSingleResult();
+	}
+
+	@Override
+	public Long countByUtenteAdminAttivo() {
+		TypedQuery<Long> query = entityManager.createQuery(
+				"select count (u.id) FROM Utente u join u.ruoli r where r.id = '1' and u.stato = 'ATTIVO'", Long.class);
+		return query.getSingleResult();
+	}
+
 }

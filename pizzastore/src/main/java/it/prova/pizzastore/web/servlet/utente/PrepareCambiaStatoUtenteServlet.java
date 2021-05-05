@@ -11,10 +11,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import it.prova.raccoltafilmspringbootservletspringdata.model.Utente;
-import it.prova.raccoltafilmspringbootservletspringdata.service.UtenteService;
+import it.prova.pizzastore.model.Utente;
+import it.prova.pizzastore.service.UtenteService;
 
-//@Component
+@Component
 public class PrepareCambiaStatoUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,13 +29,13 @@ public class PrepareCambiaStatoUtenteServlet extends HttpServlet {
 		if (!NumberUtils.isCreatable(idUtenteParam)) {
 			// qui ci andrebbe un messaggio nei file di log costruito ad hoc se fosse attivo
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("regista/list.jsp").forward(request, response);
+			request.getRequestDispatcher("utente/list.jsp").forward(request, response);
 			return;
 		}
 
 		try {
 
-			Utente utenteInstance = serviceUtente.caricaSingoloElemento(Long.parseLong(idUtenteParam));
+			Utente utenteInstance = serviceUtente.caricaSingoloUtente(Long.parseLong(idUtenteParam));
 
 			request.setAttribute("elimina_utente_attr", utenteInstance);
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class PrepareCambiaStatoUtenteServlet extends HttpServlet {
 			return;
 		}
 
-		request.getRequestDispatcher("/utente/delete.jsp").forward(request, response);
+		request.getRequestDispatcher("/utente/cambiaStato.jsp").forward(request, response);
 	}
 
 }

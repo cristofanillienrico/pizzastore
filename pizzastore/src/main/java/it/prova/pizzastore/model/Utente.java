@@ -65,7 +65,7 @@ public class Utente {
 		this.dateCreated = dateCreated;
 	}
 
-	public Utente(Long id, String username, String password, String nome, String cognome, Date dateCreated,
+	public Utente(Long id,  String nome, String cognome,String username, String password, Date dateCreated,
 			StatoUtente stato) {
 		super();
 		this.id = id;

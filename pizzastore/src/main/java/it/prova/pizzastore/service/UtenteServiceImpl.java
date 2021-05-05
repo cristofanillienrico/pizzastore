@@ -56,4 +56,14 @@ public class UtenteServiceImpl implements UtenteService {
 		return repository.findByUsernameAndPassword(username, password);
 	}
 
+	@Transactional(readOnly = true)
+	public Utente findOneEagerRuoli(long id) {
+		return repository.findOneEagerRuoli(id);
+	}
+
+	@Transactional(readOnly = true)
+	public boolean unicoAdminAttivo() {
+		return repository.countByUtenteAdminAttivo() == 1;
+	}
+
 }

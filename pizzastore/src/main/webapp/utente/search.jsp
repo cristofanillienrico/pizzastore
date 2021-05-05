@@ -54,15 +54,20 @@
                             		title="formato : gg/mm/aaaa"  name="dateCreated" >
 							</div>
 							
+							
+							
+							
 							<div class="form-group col-md-3">
 								<label for="stato">Stato</label>
 							    <select class="form-control" id="stato" name="stato">
+							    
 							    	<option value="">Indifferente</option>
-							      	<option value="ATTIVO">ATTIVO</option>
-							      	<option value="DISABILITATO">DISABILITATO</option>
-							      	<option value="CREATO">CREATO</option>
+							    	<c:forEach items="${stati_list_attribute }" var="statoItem">
+							      	<option value="${statoItem}">${statoItem}</option>
+							      	</c:forEach>
 							      	
 							    </select>
+							     
 							</div>
 						</div>
 						
@@ -73,17 +78,22 @@
 							
 						</div>
 						
+						 
 						 	
-						Ruoli:
-						<div class="form-check">
-							<c:forEach items="${ruoli_list_attribute }" var="ruoloItem">
-							  <input name="ruolo.id" class="form-check-input" type="checkbox" value="${ruoloItem.id}" id="defaultCheck${ruoloItem.id}">
-							  <label class="form-check-label" for="defaultCheck${ruoloItem.id}">
-							    ${ruoloItem.descrizione }
-							  </label>
-							  <br>
-							 </c:forEach>
-						</div>
+						 	
+						 	
+						 	<c:forEach items="${ruoli_list_attribute }" var="ruoloItem">
+							 	<div class="form-check">
+		  							<input class="form-check-input" type="radio" name="ruolo_id" id="ruolo_id${ruoloItem.id}" value="${ruoloItem.id}" >
+			  							<label class="form-check-label" for="ruolo_id${ruoloItem.id}">
+			   							${ruoloItem.descrizione }
+			  							</label>
+	  							</div>
+						 	</c:forEach>
+						 	
+						
+						
+						
 						
 						<br>
 						

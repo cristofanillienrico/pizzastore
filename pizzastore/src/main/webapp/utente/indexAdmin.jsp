@@ -42,9 +42,9 @@
 	    <!-- Example row of columns -->
 	    <div class="row">
 	      <div class="col-md-6">
-	        <h2>Gestione Registi</h2>
+	        <h2>Gestione Utenti</h2>
 	        <p>Questa funzionalità è realtiva alla Gestione degli Utenti</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchUtenteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="${pageContext.request.contextPath}/utente/PrepareSearchUtenteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	      
 	    </div>

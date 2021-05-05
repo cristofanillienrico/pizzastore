@@ -5,8 +5,8 @@ import java.util.List;
 import it.prova.pizzastore.model.Utente;
 
 public interface UtenteService {
-	
-	public List<Utente> listAllUtenti() ;
+
+	public List<Utente> listAllUtenti();
 
 	public Utente caricaSingoloUtente(Long id);
 
@@ -17,9 +17,13 @@ public interface UtenteService {
 	public void rimuovi(Utente utenteInstance);
 
 	public List<Utente> findByExample(Utente example);
-	
+
 	public Utente findByUsernameAndPassword(String username, String password);
-	
+
 	public Utente eseguiAccesso(String username, String password);
+
+	public Utente findOneEagerRuoli(long id);
+
+	public boolean unicoAdminAttivo();
 
 }

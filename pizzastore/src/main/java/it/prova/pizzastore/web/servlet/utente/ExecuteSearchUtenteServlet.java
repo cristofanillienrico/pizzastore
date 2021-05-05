@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import it.prova.raccoltafilmspringbootservletspringdata.service.UtenteService;
+import it.prova.pizzastore.dto.RuoloDTO;
+import it.prova.pizzastore.dto.UtenteDTO;
+import it.prova.pizzastore.model.Utente;
+import it.prova.pizzastore.service.UtenteService;
 
 @Component
 public class ExecuteSearchUtenteServlet extends HttpServlet {
@@ -27,14 +31,19 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 		String dateCreatedParam = request.getParameter("dateCreated");
 		String statoParam = request.getParameter("stato");
 
-		String[] idRuoliParam = request.getParameterValues("ruolo.id");
+		String ruoloParam = request.getParameter("ruolo_id");
 
 		try {
-			UtenteDTO 
-			
-			
-//			Utente example = UtilityForm.createUtenteFromParams(nomeParam, cognomeParam, usernameParam, null,
-//					dateCreatedParam, statoParam, idRuoliParam);
+			UtenteDTO utenteDTOInstance = UtenteDTO.createUtenteDTOFromParamsWhitoutPassword(nomeParam, cognomeParam,
+					usernameParam, dateCreatedParam, statoParam);
+
+			Utente example = utenteDTOInstance.buildUtenteModel();
+
+			if (!StringUtils.isBlank(ruoloParam)) {
+				RuoloDTO ruoloDTOInstance = RuoloDTO.createRuoloDTOFromParamsID(ruoloParam);
+				example.getRuoli().add(ruoloDTOInstance.buildRuoloModel());
+			}
+
 			request.setAttribute("utenti_list_attribute", utenteService.findByExample(example));
 		} catch (Exception e) {
 			e.printStackTrace();

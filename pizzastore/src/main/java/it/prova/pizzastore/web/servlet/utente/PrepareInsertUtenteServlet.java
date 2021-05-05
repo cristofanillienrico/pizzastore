@@ -1,6 +1,7 @@
 package it.prova.pizzastore.web.servlet.utente;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import it.prova.municipioabitantespringbootservletjpa.model.Utente;
-import it.prova.municipioabitantespringbootservletjpa.service.RuoloService;
+import it.prova.pizzastore.dto.UtenteDTO;
+import it.prova.pizzastore.model.Ruolo;
+import it.prova.pizzastore.service.RuoloService;
 
-//@Component
+@Component
 public class PrepareInsertUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	private RuoloService serviceRuolo;
+	private RuoloService ruoloService;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("insert_utente_attr", new Utente());
-		request.setAttribute("ruoli_list_attribute", serviceRuolo.listAll());
+
+		List<Ruolo> ruoli = ruoloService.listAll();
+		request.setAttribute("ruoli_list_attribute", ruoli);
+
+		request.setAttribute("insert_utente_attr", new UtenteDTO());
 		request.getRequestDispatcher("/utente/insert.jsp").forward(request, response);
 	}
 

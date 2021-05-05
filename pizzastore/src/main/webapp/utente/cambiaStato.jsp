@@ -50,7 +50,7 @@
 		    
 		    <div class='card-footer'>
 		    
-		    	<form action="ExecuteRimuoviUtenteServlet" method="post"   >
+		    	<form action="ExecuteCambiaStatoUtenteServlet" method="post"   >
 			        <a href="ExecuteListUtenteServlet" class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i> Back
 			        </a>

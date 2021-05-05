@@ -75,10 +75,10 @@
 											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaUtenteServlet?idUtente=${utenteItem.id }">Visualizza</a>
 											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareEditUtenteServlet?idUtente=${utenteItem.id }">Edit</a>
 											<c:if test = "${utenteItem.stato == 'ATTIVO'}">
-                                                <a class="btn btn-outline-danger btn-sm" href="PrepareDeleteUtenteServlet?idUtente=${utenteItem.id }">Disabilita</a>
+                                                <a class="btn btn-outline-danger btn-sm" href="PrepareCambiaStatoUtenteServlet?idUtente=${utenteItem.id }">Disabilita</a>
                                               </c:if>
                                               <c:if test = "${utenteItem.stato == 'DISABILITATO' || utenteItem.stato == 'CREATO'}">
-                                                <a class="btn btn-outline-success btn-sm" href="PrepareDeleteUtenteServlet?idUtente=${utenteItem.id }">Abilita</a>
+                                                <a class="btn btn-outline-success btn-sm" href="PrepareCambiaStatoUtenteServlet?idUtente=${utenteItem.id }">Abilita</a>
                                             </c:if>
 									</tr>
 								</c:forEach>

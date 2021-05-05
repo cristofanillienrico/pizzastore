@@ -3,17 +3,26 @@
 <!doctype html>
 <html lang="it">
 <head>
-	<jsp:include page="../header.jsp" />
-	<title>Inserisci nuovo</title>
+	<jsp:include page="/header.jsp" />
+	<title>Inserisci nuovo Utente</title>
 	
 	<!-- style per le pagine diverse dalla index -->
-    <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/assets/css/global.css" rel="stylesheet">
     
 </head>
 <body>
-	<jsp:include page="../navbar.jsp" />
+	<jsp:include page="/navbar.jsp" />
 	
 	<main role="main" class="container">
+	
+		<%-- alert con lista errori --%>
+		<div class="alert alert-danger ${insert_utente_attr.hasErrors()?'':'d-none'}" role="alert">
+			<c:forEach var ="errorItem" items="${insert_utente_attr.errors }">
+	        	<ul>
+					<li> ${errorItem }</li>	
+				</ul>
+	      	</c:forEach>
+		</div>
 	
 		<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
 		  ${errorMessage}
@@ -23,7 +32,7 @@
 		</div>
 		
 		<div class='card'>
-		    <div class='card-header' style='margin-top:100px'>
+		    <div class='card-header'>
 		        
 		        <h5>Inserisci nuovo elemento</h5>
 		    </div>
@@ -35,54 +44,44 @@
 					
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label>Nome <span class="text-danger">*</span></label>
-								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${insert_utente_attr.nome }" required>
+								<label>Username <span class="text-danger">*</span></label>
+								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire username" value="${insert_utente_attr.username}" required>
 							</div>
 							
 							<div class="form-group col-md-6">
-								<label>Cognome <span class="text-danger">*</span></label>
-								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${insert_utente_attr.cognome }" required>
+								<label>Password <span class="text-danger">*</span></label>
+								<input type="password" name="password" id="password" class="form-control" placeholder="Inserire password" value="${insert_utente_attr.password}" required>
 							</div>
 						</div>
 						
 						<div class="form-row">	
 							<div class="form-group col-md-6">
-								<label>Username <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" name="username" id="username" placeholder="Inserire l' username" value="${insert_utente_attr.username }" required>
+								<label>Nome <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="nome" id="nome" placeholder="Inserire nome" value="${insert_utente_attr.nome}" required>
 							</div>
-							
-							
+								
 							<div class="form-group col-md-6">
-								<label>Password <span class="text-danger">*</span></label>
-								<input type="password" class="form-control" name="password" id="password" placeholder="Inserire la password" value="${insert_utente_attr.password }" required>
+								<label>Cognome <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="cognome" id="cognome" placeholder="Inserire cognome" value="${insert_utente_attr.cognome}" required>
 							</div>
-							
-							
+						
 						</div>
 						
+						<br/>
 						Ruoli:
-						<div class="form-row">
-						
-						
-						<div id="divRuoli" class="form-check">
-							<c:forEach items="${ruoli_list_attribute }" var="ruoloItem">
-							  <input name="ruolo.id" class="form-check-input" type="checkbox" value="${ruoloItem.id}" id="defaultCheck${ruoloItem.id}">
-							  <label class="form-check-label" for="defaultCheck${ruoloItem.id}">
-							    ${ruoloItem.descrizione }
-							  </label>
-							  <br>
-							 </c:forEach>
+						<div class="form-check">
+						  <c:forEach items="${ruoli_list_attribute}" var="ruoloItem">
+						  <input name="ruolo.id" class="form-check-input" type="checkbox" value="${ruoloItem.id}" id="defaultCheck">
+						  <label class="form-check-label" for="defaultCheck">
+						    ${ruoloItem.descrizione}
+						  </label>
+						  <br/>
+						  </c:forEach>
 						</div>
-						
-						</div>
-						<br>
+							
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-						<a class="btn btn-outline-primary ml-2" href="ExecuteListUtenteServlet">Back</a>
-					
-					
+
 					</form>
-					
-					
 
 		    
 		    
@@ -93,7 +92,7 @@
 	
 	<!-- end container -->	
 	</main>
-	<jsp:include page="../footer.jsp" />
+	<jsp:include page="/footer.jsp" />
 	
 </body>
 </html>

@@ -8,4 +8,8 @@ public interface CustomUtenteRepository {
 
 	List<Utente> findByExample(Utente example);
 
+	Utente findOneEagerRuoli(Long id);
+	
+	Long countByUtenteAdminAttivo();
+
 }

@@ -156,6 +156,15 @@ public class UtenteDTO {
 		result.setDateCreated(Utility.parseDateFromString(dataCreatedStringParam));
 		return result;
 	}
+	
+	public static UtenteDTO createUtenteDTOFromParamsWhitoutPassword(String nomeInputParam, String cognomeInputParam,
+			String usernameInputParam, String dataCreatedStringParam, String statoParam) {
+
+		UtenteDTO result = new UtenteDTO(nomeInputParam, cognomeInputParam, usernameInputParam,null);
+		result.setStato(StringUtils.isBlank(statoParam) ? null : StatoUtente.valueOf(statoParam));
+		result.setDateCreated(Utility.parseDateFromString(dataCreatedStringParam));
+		return result;
+	}
 
 	public static List<UtenteDTO> createRegistaDTOListFromModelList(List<Utente> modelListInput) {
 		return modelListInput.stream().map(utenteEntity -> {
